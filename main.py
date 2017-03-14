@@ -1,12 +1,12 @@
-table = [['.', '.', '.'],['.', '.', '.'],['.', '.', '.'],] # Gets the grid set up
+table = [['.', '.', '.', '.', '.'],['.', '.', '.', '.', '.'],['.', '.', '.', '.', '.'],['.', '.', '.', '.', '.'],['.', '.', '.', '.', '.'],] # Gets the grid set up
 
 x_axis = 0 # sets x_axis starting point
 y_axis = 0 # sets y_axis starting point
 
-grid_size = 3 # sets grid size, used to detemine maximum x & y values.
+grid_size = 5 # sets grid size, used to detemine maximum x & y values.
  
 def grid_print (y_axis,table): # Prints the grid
-    print('  1 2 3')
+    print('  1 2 3 4 5')
     for i in table:
         y_axis += 1
         print(str(y_axis), end=' ')
@@ -15,19 +15,19 @@ def grid_print (y_axis,table): # Prints the grid
         print('')
 
 def check_win (): # check for victor, returns winner or no win, work in progress
-    for i in 
+    #for i in 
     a = 0
     b = 0
     
     for i in table[y]:
-        if i == 'X'
+        if i == 'X':
             a += 1
         elif i == 'O':
             b += 1
             
-    if b = 3:
+    if b == 3:
         return('X wins')
-    if a = 3:
+    if a == 3:
         return('O wins')
             
 
