@@ -38,50 +38,42 @@ def check_win():  # check for victor, returns winner or no win, wip
         return('O wins')
 
 
-def test(value_x, value_y):  # test to see if user input is valid
+def valid_input(value_x, value_y):  # test to see if user input is valid
     while True:
         try:
             value_x = int(value_x)
-            if value_x >= 1 and value_x <= grid_size:
-                break
-
-            elif value_x < 1:
-                print(str(value_x) + ' is too low')
-                value_x = input('x,y: ')
-
-            elif value_x > grid_size:
-                print(str(value_x) + ' is too high')
-                value_x = input('x,y: ')
-
-        except ValueError:
-            print('That is not a number!')
-            value_x = input('x,y: ')
-
-        try:
             value_y = int(value_y)
-            if value_y >= 1 and value_y <= grid_size:
+            if value_x >= 1 and value_y >= 1 and value_x <= grid_size and value_y <= grid_size:
+                return [value_x, value_y]
                 break
+            elif value_x < 1:
+                    print(str(value_x) + ' is too low')
+                    value_x = input('x: ')
             elif value_y < 1:
-                print(str(value_y) + ' is too low')
-                value_y = input('x,y: ')
+                    print(str(value_y) + ' is too low')
+                    value_y = input('y: ')
+            elif value_x > grid_size:
+                    print(str(value_x) + ' is too high')
+                    value_x = input('x: ')
             elif value_y > grid_size:
-                print(value_y + ' is too high')
-                value_y = input('x,y: ')
+                    print(str(value_y) + ' is too high')
+                    value_y = input('y: ')
         except ValueError:
             print('That is not a number!')
-            value_y = input('x,y: ')
+            xy = input('x,y: ')
+            value_x = xy[0]
+            value_y = xy[2]
 
 while True:  # loop for the whole program
-    grid_print(y_axis, table)  # prints grid
-
     while True:
+        grid_print(y_axis, table)  # prints grid
         xy = input('x,y: ')
         x = xy[0]
         y = xy[2]
         
-        test(x, y)
-        x = int(x) - 1
-        y = int(y) - 1
+        xy_values = valid_input(x, y)
+        x = xy_values[0] - 1
+        y = xy_values[1] - 1
 
         if table[y][x] == '.':
             table[y][x] = 'X'
@@ -93,21 +85,17 @@ while True:  # loop for the whole program
 
     while True:
         grid_print(y_axis, table)
-
         xy = input('x,y: ')
-        xy_list = xy.split()
-        x = xy_list[0][0]
-        y = xy_list[0][2]
+        x = xy[0]
+        y = xy[2]
 
-        test(x, 'x')
-        x = int(x) - 1
-
-        test(y, 'y')
-        y = int(y) - 1
+        xy_values = valid_input(x, y)
+        x = xy_values[0] - 1
+        y = xy_values[1] - 1
 
         if table[y][x] == '.':
-                table[y][x] = 'O'
-                break  # breaks out after placing X,O
+            table[y][x] = 'O'
+            break  # breaks out after placing X,O
 
         else:
             print('That space is taken!')
