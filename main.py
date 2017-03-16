@@ -38,35 +38,49 @@ def check_win():  # check for victor, returns winner or no win, wip
         return('O wins')
 
 
-def test(x, y):  # test to see if user input is valid
+def test(value_x, value_y):  # test to see if user input is valid
     while True:
         try:
-            x = int(x)
-            if x >= 1 and x <= grid_size:
+            value_x = int(value_x)
+            if value_x >= 1 and value_x <= grid_size:
                 break
 
-            elif x < 1:
-                print(x, 'is too low')
-                x = input(y + ': ')
+            elif value_x < 1:
+                print(str(value_x) + ' is too low')
+                value_x = input('x,y: ')
 
-            elif x > 3:
-                print(x, 'is too high')
-                x = input(y + ': ')
+            elif value_x > grid_size:
+                print(str(value_x) + ' is too high')
+                value_x = input('x,y: ')
 
         except ValueError:
             print('That is not a number!')
-            x = input(y + ': ')
+            value_x = input('x,y: ')
+
+        try:
+            value_y = int(value_y)
+            if value_y >= 1 and value_y <= grid_size:
+                break
+            elif value_y < 1:
+                print(str(value_y) + ' is too low')
+                value_y = input('x,y: ')
+            elif value_y > grid_size:
+                print(value_y + ' is too high')
+                value_y = input('x,y: ')
+        except ValueError:
+            print('That is not a number!')
+            value_y = input('x,y: ')
 
 while True:  # loop for the whole program
     grid_print(y_axis, table)  # prints grid
 
     while True:
-        x = input('x: ')
-        test(x, 'x')
+        xy = input('x,y: ')
+        x = xy[0]
+        y = xy[2]
+        
+        test(x, y)
         x = int(x) - 1
-
-        y = input('y: ')
-        test(y, 'y')
         y = int(y) - 1
 
         if table[y][x] == '.':
@@ -77,18 +91,17 @@ while True:  # loop for the whole program
             print('That space is taken!')
             # check is space is taken or else the process is repeated.
 
-    if x == -1:  # cheat code
-        for i in range(30):
-            print('Michael Wins')
-
     while True:
         grid_print(y_axis, table)
 
-        x = input('x: ')
+        xy = input('x,y: ')
+        xy_list = xy.split()
+        x = xy_list[0][0]
+        y = xy_list[0][2]
+
         test(x, 'x')
         x = int(x) - 1
 
-        y = input('y: ')
         test(y, 'y')
         y = int(y) - 1
 
