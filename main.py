@@ -21,22 +21,40 @@ def grid_print(y_axis, table):  # Prints the grid
         print('')
 
 
-def check_win():  # check for victor, returns winner or no win, wip
-    # for i in
+def player_win(a,b):
+  if b == 3:
+      return('O wins')
+  elif a == 3:
+      return('X wins')
+  else:
+      return('NO win')
+
+
+def check_win (x,y,table): # check for victor, returns winner or no win, work in progress
     a = 0
     b = 0
 
-    for i in table[y]:
+    for i in table[y]: #Checks every value in table[y] for input
         if i == 'X':
             a += 1
         elif i == 'O':
             b += 1
-
-    if b == 3:
-        return('X wins')
-    if a == 3:
-        return('O wins')
-
+            
+    winner = player_win(a,b)
+            
+    a = 0
+    b = 0
+    
+    for i in range(3):
+      if table[i][x] == 'X':
+        a += 1
+      elif table[i][x] == 'O':
+        b += 1
+        
+    winner = player_win(a,b)
+    
+    return winner
+      
 
 def valid_input(value_x, value_y):  # test to see if user input is valid
     while True:
@@ -80,9 +98,13 @@ while True:  # loop for the whole program
             break  # breaks out after placing X,O
 
         else:
-            print('That space is taken!')
-            # check is space is taken or else the process is repeated.
-
+            print('That space is taken!') # check is space is taken or else the process is repeated.
+    
+    winner = check_win(x,y,table)
+    
+    if winner == 'X win' or winner == 'O win':
+        break
+            
     while True:
         grid_print(y_axis, table)
         xy = input('x,y: ')
@@ -98,5 +120,15 @@ while True:  # loop for the whole program
             break  # breaks out after placing X,O
 
         else:
-            print('That space is taken!')
-            # check is space is taken or else the process is repeated.
+            print('That space is taken!') # check is space is taken or else the process is repeated.
+    
+    winner = check_win(x,y,table)
+    
+    if winner == 'X win' or winner == 'O win':
+        break
+
+
+
+    
+    
+        
